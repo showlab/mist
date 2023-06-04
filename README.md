@@ -40,7 +40,7 @@ You can download the dataset annotation files and features directly from our onl
 
 [Download from Google Drive]()
 
-In our experiments, we suggest placing the downloaded data folder in the same root directory as the code folder.
+In our experiments, we placed the downloaded data folder in the same root directory as the code folder.
 
 #### Option 2: Extract Features Using Provided Script
 
