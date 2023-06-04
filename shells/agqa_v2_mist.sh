@@ -1,7 +1,9 @@
-CUDA_VISIBLE_DEVICES=0 python main_agqa_v2.py --checkpoint_dir=agqa \
+CUDA_VISIBLE_DEVICES=6 python main_agqa_v2.py --dataset_dir='../data/datasets/' \
+	--feature_dir='../data/feats/'  \
+	--checkpoint_dir=agqa \
 	--dataset=agqa \
 	--mc=0 \
-	--epochs=300 \
+	--epochs=30 \
 	--lr=0.00003 \
 	--qmax_words=30 \
 	--amax_words=38 \
@@ -17,6 +19,6 @@ CUDA_VISIBLE_DEVICES=0 python main_agqa_v2.py --checkpoint_dir=agqa \
 	--dropout=0.3 \
 	--seed=100 \
 	--freq_display=150 \
-	--save_dir='../data/save_models/agqa/mist_agqa_v2_fulldata/'
+	--save_dir='../data/save_models/agqa/mist_agqa_v2/'
 
 

@@ -40,35 +40,28 @@ import numpy as np
 class VideoQADataset(Dataset):
     def __init__(
             self,
-            data_dir,
-            split,
-            feature_dir,
+            data_dir='../data/datasets/agqa/',
+            split='train',
+            feature_dir='../data/feats/agqa/',
             qmax_words=20,
             amax_words=5,
             bert_tokenizer=None,
-            a2id=None,
-            bnum=10
+            a2id=None
     ):
         """
 
         """
-        data_dir = '../data/datasets/agqa/'
-        self.data = pd.read_json(f'../data/datasets/agqa/agqa_{split}.jsonl')
-        if split == 'train':
-            pass
-            # self.data = self.data.sample(frac=0.05, random_state=1)
-        else:
-            self.data = self.data.sample(frac=0.05, random_state=1)
-        self.frame_size = json.load(open(os.path.join(data_dir, 'agqa_frame_size.json')))
+        self.data = pd.read_json(osp.join(data_dir, f'agqa_{split}.jsonl'))
+        self.frame_size = json.load(open(osp.join(data_dir, 'agqa_frame_size.json')))
         self.dset = 'agqa'
-        self.video_feature_path = '../data/feats/agqa/'
+        self.video_feature_path = feature_dir
         self.bbox_num = 16
         self.use_frame = True
         self.use_mot = False
         self.qmax_words = qmax_words
-        self.a2id = json.load(open(os.path.join(data_dir, 'vocab.json')))
+        self.a2id = json.load(open(osp.join(data_dir, 'vocab.json')))
         self.bert_tokenizer = bert_tokenizer
-        self.candidate_answer = json.load(open(f'../data/datasets/agqa/agqa_{split}_candidates.json'))
+        self.candidate_answer = json.load(open(osp.join(data_dir, f'agqa_{split}_candidates.json')))
 
         # bbox_feat_file = osp.join(self.video_feature_path, f'region_feat_n/faster_rcnn_32f20b.h5')
         # print('Load {}...'.format(bbox_feat_file))
@@ -111,7 +104,7 @@ class VideoQADataset(Dataset):
         bbox_feat = torch.from_numpy(bbox_feat).type(torch.float32)
 
         try:
-            roi_feat = self.frame_feats[vid_id][:, 1:, :]   # [frame_num, 16, dim]
+            roi_feat = self.frame_feats[vid_id][:, 1:, :]  # [frame_num, 16, dim]
             roi_feat = torch.from_numpy(roi_feat).type(torch.float32)
             region_feat = torch.cat((roi_feat, bbox_feat), dim=-1)
         except:
@@ -138,7 +131,7 @@ class VideoQADataset(Dataset):
 
         video_o, video_f = self.get_video_feature(raw_vid_id, width, height)
 
-        vid_duration = 8 # video_f.shape[0]
+        vid_duration = 8  # video_f.shape[0]
 
         question_txt = cur_sample['question']
         question_embd = torch.tensor(
@@ -207,8 +200,7 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
             qmax_words=args.qmax_words,
             amax_words=args.amax_words,
             bert_tokenizer=bert_tokenizer,
-            a2id=a2id,
-            bnum=args.bnum,
+            a2id=a2id
         )
 
         test_loader = DataLoader(
@@ -229,8 +221,7 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
             qmax_words=args.qmax_words,
             amax_words=args.amax_words,
             bert_tokenizer=bert_tokenizer,
-            a2id=a2id,
-            bnum=args.bnum,
+            a2id=a2id
         )
 
         train_loader = DataLoader(
@@ -250,8 +241,7 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
             qmax_words=args.qmax_words,
             amax_words=args.amax_words,
             bert_tokenizer=bert_tokenizer,
-            a2id=a2id,
-            bnum=args.bnum,
+            a2id=a2id
         )
         val_loader = DataLoader(
             val_dataset,
@@ -263,4 +253,3 @@ def get_videoqa_loaders(args, features, a2id, bert_tokenizer, test_mode):
         test_loader = None
 
     return train_loader, val_loader, test_loader
-
