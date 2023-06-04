@@ -1,7 +1,6 @@
 CUDA_VISIBLE_DEVICES=0 python main_agqa_v2.py --checkpoint_dir=agqa \
 	--dataset=agqa \
 	--mc=0 \
-	--bnum=5 \
 	--epochs=300 \
 	--lr=0.00003 \
 	--qmax_words=30 \
