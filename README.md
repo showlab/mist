@@ -8,14 +8,17 @@
 > **MIST: Multi-modal Iterative Spatial-Temporal Transformer for Long-form Video Question Answering**
 > <br>Difei Gao, Luowei Zhou, Lei Ji, Linchao Zhu, Yi Yang, Mike Zheng Shou<br>
 
-![](assets/overall.jpeg) 
+![](assets/model.jpeg) 
 
-### Requirements
+## Prerequisites
 
-1. Pytorch >= 1.9.0 (Tested on Pytorch 1.11.0 with CUDA 11.3)
-2. We have performed experiments on NVIDIA GeForce A5000 GPU 24GB GPU
-3. See [`requirements.txt`](requirements.txt) for the required python packages and run to install them
+The project requires the following:
 
+1. **PyTorch** (version 1.9.0 or higher): The project was tested on PyTorch 1.11.0 with CUDA 11.3 support.
+2. **Hardware**: We have performed experiments on NVIDIA GeForce A5000 with 24GB GPU memory. Similar or higher specifications are recommended for optimal performance.
+3. **Python packages**: Additional Python packages specified in the `requirements.txt` file are necessary. Instructions for installing these are given below.
+
+## Setup Instructions
 Let's begin from creating and activating a Conda environment an virtual environment 
 ```
 conda create --name mistenv python=3.7
@@ -28,23 +31,31 @@ $ cd mist
 $ pip install -r requirements.txt
 ```
 
-### Data Preparation
-You can either download the feature from our shared drive or extract by your own with the given script.
+## Data Preparation
+You need to obtain necessary dataset and features. You can choose one of the following options to do so:
 
-1. Option 1: Download features from online drive:
-[Open Google Drive Folder]()
-This folder provides the dataset annotation files and features. In our experiments, we place the data folder under the same root with code folder.
+#### Option 1: Download Features from Our Shared Drive
 
-2. Option 2: Extract by running the script in `extract\extract_clip_features.ipynb`.
-The code extract the patch features of the video frames.
-The script also provides a checking code to see if you extracted features work correctly. 
+You can download the dataset annotation files and features directly from our online drive:
 
-### Training
-Simply run the shell `agqa_v2_mist.sh` in the `shells\` to start training.
+[Download from Google Drive]()
+
+In our experiments, we suggest placing the downloaded data folder in the same root directory as the code folder.
+
+#### Option 2: Extract Features Using Provided Script
+
+If you prefer, you can extract the features on your own using the provided script located in the `extract` directory:
+
+`extract\extract_clip_features.ipynb`
+
+This script extracts the patch features from video frames. Additionally, it includes a checking routine to verify the correctness of the extracted features.
+
+## Training
+With your environment set up and data ready, you can start training the model. To begin training, run the `agqa_v2_mist.sh` shell script located in the `shells\` directory. 
 ```
 ./shells/agqa_v2_mist.sh
 ```
-or input the command below on the terminal.
+Alternatively, input the command below on the terminal to start training.
 ```
 CUDA_VISIBLE_DEVICES=6 python main_agqa_v2.py --dataset_dir='../data/datasets/' \
 	--feature_dir='../data/feats/'  \
@@ -69,14 +80,14 @@ CUDA_VISIBLE_DEVICES=6 python main_agqa_v2.py --dataset_dir='../data/datasets/' 
 	--freq_display=150 \
 	--save_dir='../data/save_models/agqa/mist_agqa_v2/'
 ```
-Change the dataset_dir, feature_dir and save_dir based on where your store the downloaded data and features.
+Make sure to modify the `dataset_dir`, `feature_dir`, and `save_dir` parameters in the command above to match the locations where you have stored the downloaded data and features.
 
-You can refer our training logs to check if you are running correctly.
+To verify that your training process is running as expected, you can refer to our training logs located in the `logs\` directory.
 
-### Ackonwledgements
+## Ackonwledgements
 We are grateful to just-ask, an excellent VQA codebase, on which our codes are developed.
 
-### Bibtex
+## Bibtex
 ```
 @inproceedings{gao2023mist,
   title={MIST: Multi-modal Iterative Spatial-Temporal Transformer for Long-form Video Question Answering}, 
