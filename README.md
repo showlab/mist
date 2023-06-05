@@ -3,10 +3,7 @@
 [![Python](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/)
 ![PyTorch](https://img.shields.io/badge/pytorch-1.11.0-%237732a8)
 
-[[CVPR 2023](https://openaccess.thecvf.com/content/CVPR2023/papers/Gao_MIST_Multi-Modal_Iterative_Spatial-Temporal_Transformer_for_Long-Form_Video_Question_Answering_CVPR_2023_paper.pdf)]
-
-> **MIST: Multi-modal Iterative Spatial-Temporal Transformer for Long-form Video Question Answering**
-> <br>Difei Gao, Luowei Zhou, Lei Ji, Linchao Zhu, Yi Yang, Mike Zheng Shou<br>
+A Pytorch Implementation of [[CVPR 2023](https://openaccess.thecvf.com/content/CVPR2023/papers/Gao_MIST_Multi-Modal_Iterative_Spatial-Temporal_Transformer_for_Long-Form_Video_Question_Answering_CVPR_2023_paper.pdf)] paper: MIST: Multi-modal Iterative Spatial-Temporal Transformer for Long-form Video Question Answering
 
 ![](assets/model.jpeg) 
 
