@@ -35,7 +35,7 @@ You need to obtain necessary dataset and features. You can choose one of the fol
 
 You can download the dataset annotation files and features directly from our online drive:
 
-[Download from Google Drive](https://drive.google.com/drive/folders/1UmfZ752EZxaxp3sYWBRETmamgxAa3ECD?usp=drive_link) (Uploading)
+[Download from Google Drive](https://drive.google.com/drive/folders/1UmfZ752EZxaxp3sYWBRETmamgxAa3ECD?usp=drive_link)
 
 In our experiments, we placed the downloaded data folder in the same root directory as the code folder.
 
