@@ -18,6 +18,6 @@ CUDA_VISIBLE_DEVICES=6,7 python main_star.py --checkpoint_dir=star \
 	--dropout=0.3 \
 	--seed=300 \
 	--freq_display=30 \
-	--save_dir='../data/save_models/star/mist_rs_2_topk6_topj12_nlayer2_seed300_no_pos_8clips-lr5e-5_test2/' \
+	--save_dir='../data/save_models/star/mist_star/' \
 
 	
